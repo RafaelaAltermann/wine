@@ -55,7 +55,7 @@ wine_classifier.test_model()
 wine_colors = ["red", "white"]
 
 
-# Select a random wine from the table and predict its color
+# Select a random wine from the dataset and predict its color
 random_entry = random.choice(range(0, wine_classifier.get_number_of_entries()))
 random_wine_characteristics = wine_classifier.get_wine_characteristics(random_entry)
 prediction = wine_classifier.predict(random_wine_characteristics)
@@ -67,11 +67,8 @@ else:
     print("The prediction was not correct :(")
 
 
-
-# Count the occurrences of each wine color
-counts = wine_classifier.data['style'].value_counts()
-
 # Plotting the bar chart with the highlighted color
+counts = wine_classifier.data['style'].value_counts()  # Count the occurrences of each wine color
 plt.bar(wine_colors, counts)
 plt.xlabel("Wine Color")
 plt.ylabel("Frequency")
@@ -83,8 +80,8 @@ plt.xlabel('fixed_acidity')
 plt.ylabel('Frequency')
 plt.show()
 
-# Bar chart of the 'alcohol' variable
-plt.bar(wine_colors, counts)
-plt.xlabel('Wine Color')
-plt.ylabel('alcohol')
+# Histogram of the 'alcohol' variable
+plt.hist(wine_classifier.data['alcohol'], bins=30)
+plt.xlabel('alcohol')
+plt.ylabel('Frequency')
 plt.show()
